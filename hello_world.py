@@ -5,7 +5,7 @@ from ed25519 import VerifyingKey, BadSignatureError
 from uuid import UUID
 from ubirch.ubirch_protocol import UBIRCH_PROTOCOL_TYPE_REG, UBIRCH_PROTOCOL_TYPE_BIN
 
-# Config Variables --> register your UUID at https://console.demo.ubirch.com
+# Config Variables --> register your UUID at https://console.prod.ubirch.com
 uuid = UUID("<<insert your uuid>>")
 authkey = "<<insert your device password>>"
 env = "prod"
@@ -30,7 +30,7 @@ keystore = ubirch.KeyStore("demo-device.jks", "keystore")
 protocol = Proto(keystore, uuid)
 
 # create an instance of the ubirch API and set the password
-# register your UUID at https://console.demo.ubirch.com and retrieve your password
+# register your UUID at https://console.prod.ubirch.com and retrieve your password
 api = ubirch.API(env=env)
 api.set_authentication(uuid, authkey)  
 
