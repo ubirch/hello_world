@@ -6,6 +6,7 @@ from uuid import UUID
 from ubirch.ubirch_protocol import UBIRCH_PROTOCOL_TYPE_REG, UBIRCH_PROTOCOL_TYPE_BIN
 
 # Config Variables --> register your UUID at https://console.prod.ubirch.com
+# if you need to generate a new uuid go here https://www.uuidgenerator.net/
 uuid = UUID("<<insert your uuid>>")
 authkey = "<<insert your device password>>"
 env = "prod"
