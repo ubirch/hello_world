@@ -16,7 +16,7 @@ The library consists of three parts which can be used individually:
 
 Install the library: `pip install ubirch-protocol`
   
-### Creating keypair and messages
+### Hello World
 
 ```python
 import ubirch
@@ -72,3 +72,5 @@ print(msg)
 print(r.status_code)
 ```
 
+### Further examples, verification etc.
+A more elaborate example including error-handling, logging and verification can be found here: [Python Example](https://github.com/ubirch/ubirch-protocol-python/blob/master/examples/example-client.py)
