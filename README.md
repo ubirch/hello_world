@@ -62,7 +62,7 @@ if not api.is_identity_registered(uuid):
     r = api.register_identity(key_registration)
 
 # test-message --> messages have to be unique, change content if sending more than once
-message = {'ts': 124, 'data': 22}
+message = {'ts': 124, 'data': 'hello world!'}
 serialized = json.dumps(message, separators=(',', ':'), sort_keys=True, ensure_ascii=False).encode()
 msg = protocol.message_chained(uuid, 0x53, hashlib.sha256(serialized).digest())
 
