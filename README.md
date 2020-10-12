@@ -1,2 +1,2 @@
 # hello_world
-Ubirch Hello-World example in Python3.
+This is a Ubirch Hello-World example in Python3.
