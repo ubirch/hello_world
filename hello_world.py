@@ -1,6 +1,7 @@
 import ubirch
 import binascii
 import hashlib
+import urllib
 from uuid import UUID
 from ubirch.ubirch_protocol import UBIRCH_PROTOCOL_TYPE_REG, UBIRCH_PROTOCOL_TYPE_BIN
 
@@ -48,7 +49,8 @@ if not api.is_identity_registered(uuid):
 
 # hash the test message
 test_message_hash = hashlib.sha256(test_message.encode()).digest()
-print("message hash:", binascii.b2a_base64(test_message_hash, newline=False).decode())
+test_message_ascii=binascii.b2a_base64(test_message_hash, newline=False).decode()
+print("message hash:", test_message_ascii)
 
 # create a protocol message with the test message hash
 upp = protocol.message_chained(uuid, UBIRCH_PROTOCOL_TYPE_BIN, test_message_hash)
@@ -57,3 +59,6 @@ upp = protocol.message_chained(uuid, UBIRCH_PROTOCOL_TYPE_BIN, test_message_hash
 # send protocol message to ubirch backend
 r = api.send(uuid, upp)
 print("status code:", r.status_code)
+
+#print verification link
+print("https://ubirch.de/verifier/hash-verifier#hash="+urllib.parse.quote(str(test_message_ascii)))
