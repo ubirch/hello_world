@@ -45,9 +45,10 @@ The library consists of three parts which can be used individually:
     key registration status code: 200
     message hash: FJXjDsX0jS3pEX7H28pvkp7brOPWqCfzl1V7fqv+P10=
     status code: 200
+    https://ubirch.de/verifier/hash-verifier#hash=FJXjDsX0jS3pEX7H28pvkp7brOPWqCfzl1V7fqv+P10=
    ```
 
-1. Verify your message hash at https://console.prod.ubirch.com/verification
+1. Verify your message hash at https://ubirch.de/verifier/hash-verifier
 
 ### Further examples, verification etc.
 A more elaborate example can be found here: [Python Example](https://github.com/ubirch/ubirch-protocol-python/blob/master/examples/example-client.py)
