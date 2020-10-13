@@ -1,7 +1,6 @@
 import ubirch
 import binascii
 import hashlib
-import json
 from uuid import UUID
 from ubirch.ubirch_protocol import UBIRCH_PROTOCOL_TYPE_REG, UBIRCH_PROTOCOL_TYPE_BIN
 
@@ -11,6 +10,9 @@ from ubirch.ubirch_protocol import UBIRCH_PROTOCOL_TYPE_REG, UBIRCH_PROTOCOL_TYP
 uuid = UUID("<<insert your uuid>>")
 auth = "<<insert your device password>>"
 env = "prod"
+
+# test-message --> messages have to be unique, change content
+test_message = "ubirch me!"
 
 
 # implement a signing method for the ubirch-protocol to use for signing UPPs (Ubirch Protocol Packages)
@@ -44,12 +46,14 @@ if not api.is_identity_registered(uuid):
     r = api.register_identity(key_registration)
     print("key registration status code:", r.status_code)
 
-# test-message --> messages have to be unique, change content
-message = {'ts': 124, 'data': 22}
-serialized = json.dumps(message, separators=(',', ':'), sort_keys=True, ensure_ascii=False).encode()
-msg = protocol.message_chained(uuid, UBIRCH_PROTOCOL_TYPE_BIN, hashlib.sha256(serialized).digest())
+# hash the test message
+test_message_hash = hashlib.sha256(test_message.encode()).digest()
+print("message hash:", binascii.b2a_base64(test_message_hash, newline=False).decode())
 
-# send message to ubirch backend
-r = api.send(uuid, msg)
-print(binascii.hexlify(msg).decode())
+# create a protocol message with the test message hash
+upp = protocol.message_chained(uuid, UBIRCH_PROTOCOL_TYPE_BIN, test_message_hash)
+# print("UPP: ", binascii.hexlify(upp).decode())
+
+# send protocol message to ubirch backend
+r = api.send(uuid, upp)
 print("status code:", r.status_code)
