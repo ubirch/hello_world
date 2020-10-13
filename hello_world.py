@@ -13,7 +13,7 @@ auth = "<<insert your device password>>"
 env = "prod"
 
 
-# Implement the ubirch-protocol with signing and saving the signatures
+# implement a signing method for the ubirch-protocol to use for signing UPPs (Ubirch Protocol Packages)
 class Proto(ubirch.Protocol):
     def __init__(self, key_store: ubirch.KeyStore, uuid: UUID) -> None:
         super().__init__()
